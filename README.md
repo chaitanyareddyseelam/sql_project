@@ -92,6 +92,7 @@ join payment p on s.staff_id=p.staff_id
 join rental r on p.rental_id=r.rental_id
 where return_date is not null
 group by staff_id ;
+
 /*12.Find the customers who have returned films after the due date for more than 5 times.
  Display their customer ID, first name, last name, and the count of late returns.*/
  
