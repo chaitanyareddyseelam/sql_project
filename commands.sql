@@ -1,18 +1,19 @@
-select* from rental ;
-select* from film_category ;
-select* from customer ;
-select * from staff;
+
 /*1.Write a query to retrieve the details of all films in the database, 
 including the title, description, release year, and rental rate.*/
+
 select film_id,description,release_year,rental_rate from sakila.film;
 
 /*2.Create a query to display the top 10 customers who have rented the most films,
  showing their customer ID, first name, last name, and the total number of films rented.*/
+ 
 select c.customer_id, c.first_name,c.last_name,count(r.rental_id) as total_rentals 
 from customer as c join rental as r on c.customer_id =r.customer_id  
 group by customer_id order by total_rentals desc limit 10;
 
-/*3.Write a query to find the average rental duration (in days) for each film category, including the category name and the average duration.*/
+/*3.Write a query to find the average rental duration (in days) for each film category, including the 
+category name and the average duration.*/
+
 SELECT  c.name AS category_name, AVG(DATEDIFF(r.return_date, r.rental_date)) AS avg_duration
 FROM film_category AS fc
 JOIN film AS f ON fc.film_id = f.film_id
@@ -87,6 +88,7 @@ join payment p on s.staff_id=p.staff_id
 join rental r on p.rental_id=r.rental_id
 where return_date is not null
 group by staff_id ;
+
 /*12.Find the customers who have returned films after the due date for more than 5 times.
  Display their customer ID, first name, last name, and the count of late returns.*/
  
